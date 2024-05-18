@@ -18,14 +18,14 @@ logging.basicConfig(level=logging.INFO)  # simple version to the output console
 # vertices. There is no right or wrong choice here - its up to you. (There is some speed/memory usage) tradeoff.
 # Uncomment the version you would prefer:
 
-# Edge_End_Type = TypeVar(int) # defines a new type, Edge_End_Type (which is a fancy name for an int)
+Edge_End_Type = TypeVar(int) # defines a new type, Edge_End_Type (which is a fancy name for an int)
 # Edge_End_Type = TypeVar(str) # defines a new type, Edge_End_Type (which is a fancy name for a string)
 
 Word_Pair = TypeVar(List[Edge_End_Type]) #defining a new type of variable, sort of like a new class, but simpler.
 
 # TODO: Pick one of the following two lines and delete the other one (and this instructions line you are reading, too.)
 # This program will use Directed Edges.
-# This program will use Undirected Edges.
+# This program will use Undirected Edges.   <-- this one.
 
 
 class WordPathKeeper:
@@ -69,8 +69,9 @@ class WordPathKeeper:
         count = 0
         # -----------------------------------------
         # TODO: You need to write this method.
-
-
+        for i in range(len(word1)):
+            if word1[i] != word2[i]:
+                count+=1
         # -----------------------------------------
         return count
 
@@ -108,7 +109,10 @@ class WordPathKeeper:
         #  I recommend that you keep track of the number of edges you have added, and if it is a multiple of 1000, print
         #  something so that you know your program is making progress.
         n = len(self.vertices)
-
+        for i in range(n):
+            for j in range(i):
+                if self.num_mismatched_letters(self.vertices[i],self.vertices[j]) == 1:
+                    self.edges.append([i,j])
 
 
         

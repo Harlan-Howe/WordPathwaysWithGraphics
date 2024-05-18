@@ -1,3 +1,6 @@
+import cv2
+
+from WordGraphVisualizer import WordGraphVisualizer
 from WordPathKeeperFile import WordPathKeeper
 
 wpk = WordPathKeeper()
@@ -5,9 +8,17 @@ wpk.load_words()
 wpk.build_edges()
 print (f"{len(wpk.vertices)} nodes, {len(wpk.edges)} edges.")
 
+visualizer = WordGraphVisualizer(wpk.vertices, wpk.edges)
+visualizer.spread_out()
+visualizer.draw_graph()
+# wpk.vertices.append("bane")
+# wpk.edges.append([11,20])
+# wpk.edges.append([12,20])
+
 # Alternately, use this method once to build the edges and save them to a file.
 # I'll let you research saving files, yourself.... It's fairly similar to opening a file.
 # Then load the file in the future. wpk.load_edges()
+cv2.destroyAllWindows()
 
 num_letters = len(wpk.vertices[0])
 
